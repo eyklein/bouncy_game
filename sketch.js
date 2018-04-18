@@ -9,7 +9,7 @@ var density = 0; //air
 var accGravity;
 
 
-var startButton;
+// var startButton;
 
 var startSym = true;
 
@@ -28,8 +28,8 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   
-  startButton=createButton('Start');
-  startButton.mousePressed(startSim);
+  // startButton=createButton('Start');
+  // startButton.mousePressed(startSim);
 
   ball = new Ball(color(0, 142, 200));
   
@@ -127,16 +127,16 @@ function mousePressed(){
   }
 }
 
-function changeDensity(){
-  //density=log(ball.densitySlider.value());
-  density=pow(10,ball.densitySlider.value());
-  // console.log(density + " : " + ball.densitySlider.value());
-  if(density<=.011){
-    density=0;
-  }
-  ball.divDensity.html('Density: ' + 
-                       density);
-}
+// function changeDensity(){
+//   //density=log(ball.densitySlider.value());
+//   density=pow(10,ball.densitySlider.value());
+//   // console.log(density + " : " + ball.densitySlider.value());
+//   if(density<=.011){
+//     density=0;
+//   }
+//   ball.divDensity.html('Density: ' + 
+//                       density);
+// }
 
 function Scoreboard(){
   this.graphicScoreBoard=createGraphics(width/2,height/2)
@@ -206,18 +206,18 @@ function Ball(colorIn) {
   this.pvel;
 
   this.acc = createVector(0, 1);
-	this.divs=createDiv("");
-  this.divElasitisity=createDiv('Elasticity');
-  this.divElasitisity.parent(this.divs);
-	this.elastisitySlider = createSlider(0, 1, 1, 0.01);
-	this.elastisitySlider.parent(this.divs);
-  this.divDensity=createDiv('Density '+ 
-                       density);
-  this.divDensity.parent(this.divs);
+// 	this.divs=createDiv("");
+//   this.divElasitisity=createDiv('Elasticity');
+//   this.divElasitisity.parent(this.divs);
+// 	this.elastisitySlider = createSlider(0, 1, 1, 0.01);
+// 	this.elastisitySlider.parent(this.divs);
+//   this.divDensity=createDiv('Density '+ 
+//                       density);
+//   this.divDensity.parent(this.divs);
   
-  this.densitySlider = createSlider(-2, 3, log(density),0.0001);
-	this.densitySlider.parent(this.divs);
-  this.densitySlider.mouseReleased(changeDensity);
+//   this.densitySlider = createSlider(-2, 3, log(density),0.0001);
+// 	this.densitySlider.parent(this.divs);
+//   this.densitySlider.mouseReleased(changeDensity);
   
   this.move = function() {
 
@@ -271,11 +271,11 @@ function Ball(colorIn) {
     
     
     if (this.pos.x >= totalRealWidth - this.diam / 2) {
-      this.vel.x = -abs(this.vel.x) * this.elastisitySlider.value();
+      this.vel.x = -abs(this.vel.x) * this.elasticity;
       //this.pos.x=0+totalRealWidth-this.diam/2;
     }
     if (this.pos.x <= 0 + this.diam / 2) {
-      this.vel.x = abs(this.vel.x) * this.elastisitySlider.value();
+      this.vel.x = abs(this.vel.x) * this.elasticity;
       //this.pos.x=0+this.diam/2;
     }
     
@@ -283,13 +283,13 @@ function Ball(colorIn) {
     //paddle
     if (this.pos.y >= paddle.pos.y) {
       if(this.pos.x>paddle.pos.x-this.diam/2 && this.pos.x<paddle.pos.x+paddle.width+this.diam/2)
-      this.vel.y = -abs(this.vel.y) * this.elastisitySlider.value();
+      this.vel.y = -abs(this.vel.y) * this.elasticity;
     }
     
     
     if (this.pos.y >= totalRealHeight - this.diam / 2) {
 
-      this.vel.y = -abs(this.vel.y) * this.elastisitySlider.value();
+      this.vel.y = -abs(this.vel.y) * this.elasticity;
       score.dei();
       //console.log("DEI")
 
@@ -297,7 +297,7 @@ function Ball(colorIn) {
       //console.log(this.vel.y);
     }
     if (this.pos.y <= 0 + this.diam / 2) {
-      this.vel.y = abs(this.vel.y) * this.elastisitySlider.value();
+      this.vel.y = abs(this.vel.y) * this.elasticity;
       //this.pos.y=this.diam/2;
     }
   }
@@ -330,18 +330,18 @@ function Paddle(colorIn) {
   this.pvel=this.vel;
 
   this.acc = createVector(0, 0);
-	this.divs=createDiv("");
-  this.divElasitisity=createDiv('Elasticity');
-  this.divElasitisity.parent(this.divs);
-	this.elastisitySlider = createSlider(0, 1, 1, 0.01);
-	this.elastisitySlider.parent(this.divs);
-  this.divDensity=createDiv('Density '+ 
-                       density);
-  this.divDensity.parent(this.divs);
+// 	this.divs=createDiv("");
+//   this.divElasitisity=createDiv('Elasticity');
+//   this.divElasitisity.parent(this.divs);
+// 	this.elastisitySlider = createSlider(0, 1, 1, 0.01);
+// 	this.elastisitySlider.parent(this.divs);
+//   this.divDensity=createDiv('Density '+ 
+//                       density);
+//   this.divDensity.parent(this.divs);
   
-  this.densitySlider = createSlider(-2, 3, log(density),0.0001);
-	this.densitySlider.parent(this.divs);
-  this.densitySlider.mouseReleased(changeDensity);
+//   this.densitySlider = createSlider(-2, 3, log(density),0.0001);
+// 	this.densitySlider.parent(this.divs);
+//   this.densitySlider.mouseReleased(changeDensity);
   
   
   
